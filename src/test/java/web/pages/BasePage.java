@@ -15,9 +15,6 @@ public class BasePage {
     @FindBy(xpath = "//span[@data-name='FiltersSearchButton']/*[contains(text(),'Найти')]")
     public WebElement searchBtn;
 
-    @FindBy(xpath = "//ul[@data-name='FiltersTabs']")
-    public WebElement tab;
-
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
@@ -30,7 +27,7 @@ public class BasePage {
     }
 
     public void switchTab(String tabName) {
-        tab.findElement(By.xpath("//*[contains(text(),'" + tabName + "')]")).click();
+        driver.findElement(By.xpath("//ul[@data-name='FiltersTabs']//*[contains(text(),'" + tabName + "')]/parent::*")).click();
     }
 
     public void selectAnElementInDropDown(String option, WebElement btn, boolean hideDropDown) throws InterruptedException {
