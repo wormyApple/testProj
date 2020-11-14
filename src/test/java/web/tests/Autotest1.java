@@ -25,10 +25,9 @@ public class Autotest1 {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://voronezh.cian.ru/");
-        File src = new File("./src/data/inputData/input2.xlsx");
+        File src = new File("./src/data/inputData/input.xlsx");
 
         FileInputStream fis = new FileInputStream(src);
-
         XSSFWorkbook wb = new XSSFWorkbook(fis);
 
         XSSFSheet sh1 = wb.getSheetAt(0);

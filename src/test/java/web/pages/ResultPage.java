@@ -9,19 +9,20 @@ import web.methods.DataModel;
 
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class ResultPage extends BasePage {
     public ResultPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
+    @FindBy(xpath = "//div[@data-name='SummaryHeader']/h3")
+    public WebElement searchTitle;
 
-    @FindBy(xpath = " //div[@data-name='LinkArea']")
+    @FindBy(xpath = "//div[@data-name='LinkArea']")
     public List<WebElement> dataContainers;
 
     @FindBy(xpath = "//span[@data-mark='OfferTitle']")
     public List<WebElement> titles;
-
-    @FindBy(xpath = "")
-    public List<WebElement> addresses;
 
     @FindBy(xpath = "//span[@data-mark='MainPrice']")
     public List<WebElement> prices;
@@ -35,13 +36,15 @@ public class ResultPage extends BasePage {
         for (WebElement element : elementsOfAddress) {
             fullAddress = fullAddress + element.getText();
         }
-        DataModel dataModel = new DataModel(titles.get(index).getText(), fullAddress,
+        return new DataModel(titles.get(index).getText(), fullAddress,
                 prices.get(index).getText(), description.get(index).getText());
-        return dataModel;
     }
 
     public int countOfRows() {
         return dataContainers.size();
     }
 
+    public void checkTheResultOfSearch() {
+        assertThat(searchTitle.getText().replaceAll("\\d","")).isEqualTo("Найдено  объявлений");
+    }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import web.pages.BuyPage;
 import web.pages.ByTheDayPage;
 import web.pages.RentPage;
+import web.pages.ResultPage;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class PagesSwitcher {
         BuyPage buyPage = new BuyPage(driver, wait);
         RentPage rentPage = new RentPage(driver, wait);
         ByTheDayPage byTheDayPage = new ByTheDayPage(driver, wait);
+        ResultPage resultPage = new ResultPage(driver, wait);
         buyPage.switchTab(parameters.get(0));
         switch (parameters.get(0)) {
             case "Купить": {
@@ -29,5 +31,7 @@ public class PagesSwitcher {
                 break;
             }
         }
+        resultPage.checkTheResultOfSearch();
+
     }
 }
