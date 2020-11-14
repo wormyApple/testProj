@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class fileMethods {
+public class FileMethods {
     public static List<String> readFile(XSSFSheet sheet) throws Exception {
         List<String> listOfData = new ArrayList<String>();
         Iterator<Row> rowIterator = sheet.iterator();

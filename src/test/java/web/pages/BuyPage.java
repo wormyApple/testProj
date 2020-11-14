@@ -31,7 +31,7 @@ public class BuyPage extends BasePage {
         super(driver, wait);
     }
 
-    public void selectParametersInPage(List<String> parameters) throws InterruptedException {
+    public void selectParametersInBuyPage(List<String> parameters) throws InterruptedException {
         if (parameters.get(1).contains("Квартира")) {
             selectAnElementInDropDown(parameters.get(1), buyBnt, true);
             selectAnElementInDropDown(parameters.get(2), roomsBnt, true);

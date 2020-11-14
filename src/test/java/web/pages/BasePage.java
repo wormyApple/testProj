@@ -15,6 +15,9 @@ public class BasePage {
     @FindBy(xpath = "//span[@data-name='FiltersSearchButton']/*[contains(text(),'Найти')]")
     public WebElement searchBtn;
 
+    @FindBy(xpath = "//ul[@data-name='FiltersTabs']")
+    public WebElement tab;
+
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
@@ -24,6 +27,10 @@ public class BasePage {
     public void ScrollToElement(WebElement element) throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         Thread.sleep(500);
+    }
+
+    public void switchTab(String tabName) {
+        tab.findElement(By.xpath("//*[contains(text(),'" + tabName + "')]")).click();
     }
 
     public void selectAnElementInDropDown(String option, WebElement btn, boolean hideDropDown) throws InterruptedException {
@@ -36,7 +43,7 @@ public class BasePage {
             btn.click();
     }
 
-    public void sendPriceInDropDown(String priceMin,String priceMax, WebElement btn) throws InterruptedException {
+    public void sendPriceInDropDown(String priceMin, String priceMax, WebElement btn) throws InterruptedException {
         btn.click();
         WebElement dropDown = wait.until(ExpectedConditions.visibilityOf(btn.findElement(By.xpath("//div[contains(@class,'dropdown')]"))));
         dropDown.findElement(By.xpath("//input[contains(@placeholder,'от')]")).sendKeys(priceMin);
@@ -48,23 +55,6 @@ public class BasePage {
         WebElement input = btn.findElement(By.xpath("//input"));
         input.sendKeys(value);
         Thread.sleep(3000);
-        input.findElement(By.xpath("//input")).sendKeys(Keys.RETURN) ;
+        input.findElement(By.xpath("//input")).sendKeys(Keys.RETURN);
     }
-//    public void SwitchPage(String nameOfPage) {
-//        switch (nameOfPage) {
-//            case "Купить":
-//            case "Снять": {
-//                break;
-//            }
-//            case "Посуточно": {
-//                break;
-//            }
-//            case "Оценить": {
-//                break;
-//            }
-//            case "Ипотека": {
-//                break;
-//            }
-//        }
-//    }
 }

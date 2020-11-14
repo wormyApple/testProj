@@ -1,14 +1,13 @@
 package web.tests;
 
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import web.methods.fileMethods;
+import web.methods.FileMethods;
+import web.methods.PagesSwitcher;
 import web.pages.BuyPage;
 import web.pages.ResultPage;
 
@@ -34,12 +33,12 @@ public class Autotest1 {
         XSSFWorkbook wb = new XSSFWorkbook(fis);
 
         XSSFSheet sh1 = wb.getSheetAt(0);
-        List<String> data = fileMethods.readFile(sh1);
+        List<String> data = FileMethods.readFile(sh1);
 
-        BuyPage buyPage = new BuyPage(driver, wait);
-        buyPage.selectParametersInPage(data);
+        PagesSwitcher pagesSwitcher = new PagesSwitcher();
+        pagesSwitcher.SwitchPageAndSetFilters(data,driver,wait);
 
-        ResultPage resultPage = new ResultPage(driver,wait);
-        fileMethods.writeInFile("./src/data/outputData/output.xls",resultPage.countOfRows(),driver,wait);
+        ResultPage resultPage = new ResultPage(driver, wait);
+        FileMethods.writeInFile("./src/data/outputData/output.xls", resultPage.countOfRows(), driver, wait);
     }
 }
