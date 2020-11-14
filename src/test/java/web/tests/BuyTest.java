@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import web.pages.BuyPage;
 
 import java.io.File;
@@ -53,21 +54,19 @@ public class BuyTest {
     public void test1() throws Exception {
         System.setProperty("webdriver.chrome.driver", "\\bin\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://voronezh.cian.ru/");
         File src = new File("./src/data/inputData/input.xlsx");
 
-        // load file
         FileInputStream fis = new FileInputStream(src);
 
-        // Load workbook
         XSSFWorkbook wb = new XSSFWorkbook(fis);
 
-        // Load sheet- Here we are loading first sheetonly
         XSSFSheet sh1 = wb.getSheetAt(0);
-        readFile(sh1);
-        BuyPage buyPage = new BuyPage(driver);
-        buyPage.selectAHouseInDropDown("Дом");
+        List<String> data = readFile(sh1);
+        BuyPage buyPage = new BuyPage(driver,wait);
+        buyPage.selectParametersInPage(data);
     }
 }
