@@ -18,31 +18,16 @@ public class DataModel {
         return basicInfo;
     }
 
-    public void setBasicInfo(String basicInfo) {
-        this.basicInfo = basicInfo;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

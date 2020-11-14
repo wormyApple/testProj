@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import web.methods.FileMethods;
 import web.methods.PagesSwitcher;
-import web.pages.BuyPage;
 import web.pages.ResultPage;
 
 import java.io.File;
